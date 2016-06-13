@@ -1,9 +1,60 @@
 module RongCloudIM
   module Service
-    API_HOST = "http://api.cn.ronghub.com"
-    ACTION_USER_TOKEN = "/user/getToken" 
+    API_HOST                = "http://api.cn.ronghub.com"
+    ACTION_USER_TOKEN       = "/user/getToken"
+    ACTION_GROUP_CREATE     = "/group/create"
+    ACTION_GROUP_DISMISS    = "/group/dismiss"
+    ACTION_GROUP_REFRESH    = "/group/refresh"
+    ACTION_GROUP_user_query = "/group/user/query"
+
 
     class << self
+
+      def user_get_token(params)
+        data = {
+          userId: params[:user_id],
+          name: params[:name],
+          portraitUri: params[:portrait_uri]
+        }
+
+        get_response(data, ACTION_USER_TOKEN)
+      end
+
+      def group_create(params)
+        data = {
+          userId: params[:user_id],
+          groupId: params[:group_id],
+          groupName: params[:group_name]
+        }
+
+        get_response(data, ACTION_GROUP_CREATE)
+      end
+
+      def group_dismiss(params)
+        data = {
+          userId: params[:user_id],
+          groupId: params[:group_id],
+        }
+
+        get_response(data, ACTION_GROUP_DISMISS)
+      end
+
+      def group_refresh(params)
+        data = {
+          groupId: params[:group_id],
+          groupName: params[:group_name]
+        }
+
+        get_response(data, ACTION_GROUP_REFRESH)
+      end
+
+      def group_user_query(params)
+        data = {
+          groupId: params[:group_id]
+        }
+
+        get_response(data, ACTION_GROUP_user_query)
+      end
 
       def sign(data)
         OpenSSL::Digest::SHA1.new(data).to_s
@@ -24,16 +75,6 @@ module RongCloudIM
 
       def response_type
         RongCloudIM.response_type || 'json'
-      end
-
-      def user_get_token(params)
-        data = {
-          userId: params[:user_id],
-          name: params[:name],
-          portraitUri: params[:portrait_uri]
-        }
-
-        get_response(data, ACTION_USER_TOKEN)
       end
 
       def get_response(data, path)
