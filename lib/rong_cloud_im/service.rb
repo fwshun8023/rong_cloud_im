@@ -33,10 +33,10 @@ module RongCloudIM
           app_secret = RongCloudIM.app_secret || ""
           signature = sign(app_secret + nonce + timestamp)
           {
-            'RC-App-Key': RongCloudIM.app_key || "",
-            'RC-Nonce': nonce,
-            'RC-Timestamp': timestamp,
-            'RC-Signature': signature
+            'RC-App-Key'   => RongCloudIM.app_key || "",
+            'RC-Nonce'     => nonce,
+            'RC-Timestamp' => timestamp,
+            'RC-Signature' => signature
           }
         end
 
