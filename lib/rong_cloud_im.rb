@@ -3,6 +3,8 @@ require 'net/http'
 require 'json'
 require 'rong_cloud_im/version'
 require 'rong_cloud_im/service'
+require 'rong_cloud_im/service/user'
+require 'rong_cloud_im/service/group'
 
 module RongCloudIM
 
