@@ -7,7 +7,7 @@ API文档 http://www.rongcloud.cn/docs/server.html
 
 添加下面代码到Gemfile:
 ```ruby
-gem 'alipay', '~> 0.12.0'
+gem 'rong_cloud_im', '~> 0.1.2'
 ```
 
 然后执行：
